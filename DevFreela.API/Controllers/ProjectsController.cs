@@ -13,8 +13,9 @@ namespace DevFreela.API.Controllers
 			_option = option.Value;
 		}
 
+		// api/projects?query=net core
 		[HttpGet]
-		public IActionResult Get()
+		public IActionResult Get(string query)
 		{
 			return Ok();
 		}
@@ -29,13 +30,21 @@ namespace DevFreela.API.Controllers
 		[HttpPost]
 		public IActionResult Post([FromBody] CreateProjectModel createProject)
 		{
+			if (createProject.Title.Length > 50)
+			{
+				return BadRequest();
+			}
 
 			return CreatedAtAction(nameof(GetByid), new { id = createProject.Id }, createProject);
 		}
 
 		[HttpPut("{id}")]
-		public IActionResult Put(int id, [FromBody]UpdateProjectsModel updateProjects)
+		public IActionResult Put(int id, [FromBody]UpdateProjectsModel updateProject)
 		{
+			if (updateProject.Description.Length > 200)
+			{
+				return BadRequest();
+			}
 
 			return NoContent();
 		}
