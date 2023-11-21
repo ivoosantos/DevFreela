@@ -8,11 +8,16 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.21" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DevFreela.Core\DevFreela.Core.csproj" />
     <ProjectReference Include="..\DevFreela.Infrastructure\DevFreela.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Queries\GetAllSkills\" />
   </ItemGroup>
 
 </Project>

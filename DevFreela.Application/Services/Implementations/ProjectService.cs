@@ -24,7 +24,7 @@ namespace DevFreela.Application.Services.Implementations
             _dbContext = dbContext;
 			_connectionString = connectionString.GetConnectionString("DevFreelaCs");
         }
-        public int Create(NewProjectInputModel inputModel)
+        public int Create(NewProjectInputModel inputModel) // Refatorado
 		{
 			var project = new Project(inputModel.Title, inputModel.Description, inputModel.IdClient, inputModel.IdFreelancer, inputModel.TotalCost);
 			_dbContext.Projects.Add(project);
@@ -33,7 +33,7 @@ namespace DevFreela.Application.Services.Implementations
 			return project.Id;
 		}
 
-		public void CreateComment(CreateCommentInputModel inputModel)
+		public void CreateComment(CreateCommentInputModel inputModel) // Refatorado
 		{
 			var comment = new ProjectComment(inputModel.Content, inputModel.IdProject, inputModel.IdUser);
 			_dbContext.ProjectComments.Add(comment);
