@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Queries\GetAllSkills\" />
+    <Folder Include="Queries\GetUserById\" />
   </ItemGroup>
 
 </Project>
