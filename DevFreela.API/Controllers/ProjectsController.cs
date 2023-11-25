@@ -62,6 +62,17 @@ namespace DevFreela.API.Controllers
 				return BadRequest();
 			}
 
+			if(!ModelState.IsValid)
+			{
+				var messages = ModelState
+					.Values
+					.SelectMany(e => e.Errors)
+					.Select(e => e.ErrorMessage)
+					.ToList();
+
+				return BadRequest(messages);
+			}
+
 			var id = await _mediator.Send(command);
 
 			return CreatedAtAction(nameof(GetByid), new { id = id }, command);
