@@ -15,6 +15,7 @@ namespace DevFreela.UnitTests.Application.Queries
 		[Fact]
 		public async Task ThreeProjectsExist_Executed_ReturnThreeProjectViewModels()
 		{
+			// Arrange
 			var projects = new List<Project>
 			{
 				new Project("Nome do Teste 1", "Descrição do Teste 1", 1, 2, 10000),
@@ -30,8 +31,10 @@ namespace DevFreela.UnitTests.Application.Queries
 
 			var getAllProjectQueryHandler = new GetAllProjectsQueryHandler(projectRepositoryMock.Object);
 
+			// Act
 			var projectViewModelList = await getAllProjectQueryHandler.Handle(getAllProjectQuery, new CancellationToken());
 
+			// Assert
 			Assert.NotNull(projectViewModelList);
 			Assert.NotEmpty(projectViewModelList);
 			Assert.Equal(projects.Count, projectViewModelList.Count);
