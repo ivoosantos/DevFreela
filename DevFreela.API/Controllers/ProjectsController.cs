@@ -125,7 +125,12 @@ namespace DevFreela.API.Controllers
 
 			var result = await _mediator.Send(command);
 
-			return NoContent();
+			if (!result)
+			{
+				return BadRequest("O pagamento não pôde ser processado.");
+			}
+
+			return Accepted();
 		}
 	}
 }

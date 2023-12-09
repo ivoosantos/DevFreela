@@ -1,6 +1,8 @@
+using DevFreela.API.Extensions;
 using DevFreela.API.Filters;
 using DevFreela.API.Models;
 using DevFreela.Application.Commands.CreateProject;
+using DevFreela.Application.Consumers;
 using DevFreela.Application.Validators;
 using DevFreela.Core.Repositories;
 using DevFreela.Core.Services;
@@ -21,14 +23,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DevFreelaCs");
 builder.Services.AddDbContext<DevFreelaDbContext>(p => p.UseSqlServer(connectionString));
-
+builder.Services.AddHostedService<PaymentApprovedConsumer>();
 builder.Services.AddHttpClient();
 
-builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<ISkillRepository, SkillRepository>();
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<IPaymentService, PaymentService>();
+//builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+//builder.Services.AddScoped<IUserRepository, UserRepository>();
+//builder.Services.AddScoped<ISkillRepository, SkillRepository>();
+//builder.Services.AddScoped<IAuthService, AuthService>();
+//builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddInfrastructure();
 
 builder.Services.AddControllers(options => options.Filters.Add(typeof(ValidationFilter)));
 
